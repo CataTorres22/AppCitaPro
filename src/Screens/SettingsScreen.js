@@ -1,1 +1,8 @@
-
+import React,{useState,useEffect} from 'react'
+import{View, Text,Touchable} from 'react-native'
+import {useAuth} from '../context/AuthContext'
+import ModalEditProfile from '../components/ModalEditProfile'
+import {updateEmail,updatePassword, updateProfile} from 'firebase/auth'
+import {showMessage} from 'react-native-flash-message'
+import {useNavigation} from '@react-navigation/native'
+import * ImagePicker from 'expo-image-picker'
