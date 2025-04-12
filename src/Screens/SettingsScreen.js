@@ -18,4 +18,16 @@ const SettingsScreen =() =>{
   conts[isModalVisible, setModalVisible]= useState(false)
   const[modalTitle,setModalTitle]= useState('')
   const [FieldValue,setFieldValue]= useState('')
+
+  const handleGoBack= () =>{
+    navigation.goBack()
+  }
+
+  useEffect(()=>{
+    if(user && user.photoURL){
+      setImageUri(user.photoURL)
+    }else{
+      setImageUri(defaultImage)
+    }
+  },[user])
 }
