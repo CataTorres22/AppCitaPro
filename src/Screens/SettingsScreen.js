@@ -88,3 +88,5 @@ const handleSave = async()=> {
       })
 }
 }
+
+export default SettingScreen
