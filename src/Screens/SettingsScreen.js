@@ -30,4 +30,20 @@ const SettingsScreen =() =>{
       setImageUri(defaultImage)
     }
   },[user])
+
+  //Metodo para seleccionar imagen
+  const handleChooseImage= async()=>{
+    try{
+      const{status}= await
+    }
+  }
+  const handleEdit=(field)=> {
+    setModalTitle(field)
+    setFieldValue(
+      field === 'Nombre' ? user.displayName|| '';
+      field === 'Correo' ? user.email || '';
+    field === 'Contraseña' ? '': ''
+    )
+    setModalVisible(true)
+  }
 }
