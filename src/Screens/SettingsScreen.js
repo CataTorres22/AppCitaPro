@@ -86,7 +86,18 @@ const handleSave = async()=> {
         description: error.message,
           type='danger',
       })
+}finally{
+    setModalVisible(false)
 }
+}
+
+return{
+  <View style=(style.container)>
+  <TouchableOpacity style={styles.backButton} onPress=(handleGoBack)>
+  <Text style=(styles.backButtonText)> Volver </Text>
+  </TouchableOpacity>
+  <Text style=()> Ajustes </Text>
+<Text style=()> Sobre tu cuenta </Text>
 }
 
 export default SettingScreen
