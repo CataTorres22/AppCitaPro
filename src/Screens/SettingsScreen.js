@@ -34,9 +34,16 @@ const SettingsScreen =() =>{
   //Metodo para seleccionar imagen
   const handleChooseImage= async()=>{
     try{
-      const{status}= await
+      const{status}= await ImagePicker.requestMedialibraryPermissionAsync()
+      if(status){}
+
+      //Abrir la galería para seleccionar la imagen
+      const result=await ImagePicker.launchImageLibraryAsync({})
     }
   }
+
+  const uploadImage= async()=>{}
+  
   const handleEdit=(field)=> {
     setModalTitle(field)
     setFieldValue(
@@ -69,6 +76,15 @@ const handleSave = async()=> {
         message:'😎';
         description: 'Contraseña actualizada correctamente',
           type='success',
+      })
+  }else if(modalTitle ==='Foto de perfil'){
+      await uploadImage();
+  }
+}catch(error){
+     showMessage({
+        message:'😎';
+        description: error.message,
+          type='danger',
       })
 }
 }
