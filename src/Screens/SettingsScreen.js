@@ -47,3 +47,28 @@ const SettingsScreen =() =>{
     setModalVisible(true)
   }
 }
+
+const handleSave = async()=> {
+  try{
+    if(modalTitle ==='Nombre'){
+      await updateProfile(auth.currentUser,{display : FieldValue})
+      showMessage({
+        message:'😎';
+        description: 'Nombre actualizado correctamente',
+          type='success',
+      })
+    }else if(modalTitle ==='Correo'){
+      await updateProfile(auth.currentUser,{display : FieldValue})
+      showMessage({
+        message:'😎';
+        description: 'Correo actualizado correctamente',
+          type='success',
+      })else if(modalTitle ==='Contraseña'){
+      await updateProfile(auth.currentUser,{display : FieldValue})
+      showMessage({
+        message:'😎';
+        description: 'Contraseña actualizada correctamente',
+          type='success',
+      })
+}
+}
