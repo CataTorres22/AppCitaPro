@@ -101,3 +101,27 @@ return{
 }
 
 export default SettingScreen
+
+
+
+import ModalEditProfile from '../components/ModalEditProfile'
+import ModalImagePicker from '../components/ModalImagePicker'
+import * as ImagePicker from 'expo-image-picker'
+  
+<ModalEditProfile
+        visible={isEditModalVisible}
+        title={modalTitle}
+        value={fieldValue}
+        onChangeText={setFieldValue}
+        onSave={handleSave}
+        onCancel={() => setEditModalVisible(false)}
+      />
+ 
+      <ModalImagePicker
+        visible={isImageModalVisible}
+        imageUri={imageUri}
+        onChooseImage={handleChooseImage}
+        onSave={uploadImage}
+        onCancel={() => setImageModalVisible(false)}
+      />
+    </View>
