@@ -13,8 +13,12 @@ const ModalImagePicker=({visible, imageuri,onChooseImage, onSave, onCancel }) =>
       <Text style={style.imageButtonText}> Seleccionar imagen </Text>
   </TouchableOpacity>
   <View style={styles.modalButtons}>
-  <TouchableOpacity style={styles.imageButto} onPress={onCancel}>
+  <TouchableOpacity style={styles.imageButton} onPress={onCancel}>
     <Text style={style.imageButtonText}> Cancelar </Text>
   </TouchableOpacity>
+  <TouchableOpacity style={styles.modalButton, styles.saveButton} onPress={onSave}>
+    <Text style={style.modalButtonText}> Guardar </Text>
+</TouchableOpacity>
+  </View>
   }
 }
