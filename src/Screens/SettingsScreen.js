@@ -32,17 +32,89 @@ const SettingsScreen =() =>{
   },[user])
 
   //Metodo para seleccionar imagen
-  const handleChooseImage= async()=>{
-    try{
-      const{status}= await ImagePicker.requestMedialibraryPermissionAsync()
-      if(status){}
-
-      //Abrir la galería para seleccionar la imagen
-      const result=await ImagePicker.launchImageLibraryAsync({})
+const handleChooseImage = async () => {
+    try {
+      const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
+ 
+      if (status !== 'granted') {
+        showMessage({
+          message: 'Permiso denegado',
+          description: 'Se necesita permiso para acceder a la galería.',
+          type: 'danger',
+        });
+        return;
+      }
+ 
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        quality: 1,
+      });
+ 
+      if (result.canceled) {
+        showMessage({
+          message: 'Cancelado',
+          description: 'No se seleccionó ninguna imagen.',
+          type: 'info',
+        });
+        return;
+      }
+ 
+      setImageUri(result.assets[0].uri);
+    } catch (error) {
+      console.error('Error seleccionando la imagen:', error);
+      showMessage({
+        message: 'Error',
+        description: 'Ocurrió un error al intentar seleccionar la imagen.',
+        type: 'danger',
+      });
     }
-  }
-
-  const uploadImage= async()=>{}
+  };
+ 
+const uploadImage = async () => {
+    if (!user || !imageUri) {
+      console.error('Usuario o URI de imagen no válidos:', { user, imageUri });
+      return;
+    }
+    try {
+      const formData = new FormData();
+      formData.append('file', {
+        uri: imageUri,
+        type: 'image/jpeg',
+        name: 'profile.jpg',
+      });
+      formData.append('upload_preset', UPLOAD_PRESET);
+ 
+      const response = await fetch(CLOUDINARY_URL, {
+        method: 'POST',
+        body: formData,
+      });
+ 
+      const data = await response.json();
+ 
+      if (data.secure_url) {
+        await updateProfile(auth.currentUser, { photoURL: data.secure_url });
+        setUser({ ...user, photoURL: data.secure_url });
+        setImageUri(data.secure_url);
+        showMessage({
+          message: 'Éxito',
+          description: 'Foto de perfil actualizada correctamente.',
+          type: 'success',
+        });
+      } else {
+        throw new Error(data.error?.message || 'No se pudo obtener la URL de la imagen subida');
+      }
+    } catch (error) {
+      console.error('Error subiendo la imagen:', error);
+      showMessage({
+        message: 'Error',
+        description: error.message,
+        type: 'danger',
+      });
+    } finally {
+      setImageModalVisible(false);
+    }
+  };
   
   const handleEdit=(field)=> {
     setModalTitle(field)
