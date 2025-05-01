@@ -1,43 +1,48 @@
-import React, { useEffect } from "react";
-import { View, Text, StyleSheet, Image } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-
+import React,{useEffect} from 'react';
+import { Text, StyleSheet, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { LinearGradient } from 'expo-linear-gradient';
+import colors from '../constants/colors';
 
 
 
 const SplashScreen = () => {
-    const Navigation = useNavigation();
+    const navigation = useNavigation();
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            Navigation.replace('MainTabs')
-        }, 3000)
+            navigation.replace('Register')},3000)
         return () => clearTimeout(timer)
-    }, [Navigation])
-
-    return (
-        <View style={Styles.container}>
-            <Text>Loading...</Text>
-            <Image source={require('../assets/icono.jpg')} Styles={Styles.logo} />
-        </View>
-    )
-
+    }, [navigation])
+  return (
+    <View>
+      <Text style={styles.text} >Loading...</Text>
+        <Image source={require('../../src/constants/colors')} style={styles.logo} />
+    </View>
+  )
 }
 
 
-const Styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    logo: {
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: 'auto',
-        width: 'auto'
-    }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    resizeMode: 'contain',
+  },
+  text: {
+    color: colors. default,
+    fontSize: 20,
+    fontWeight: 'bold',
+    marginBottom: 20,
+  },
+  loader: {
+    marginTop: 20,   
+  },
 });
 
 export default SplashScreen
