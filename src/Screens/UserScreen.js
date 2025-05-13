@@ -11,7 +11,7 @@ const UserScreen = ({ navigation }) => {
   const { user } = useAuth();
   const [isLogoutModalVisible, setLogoutModalVisible] = useState(false); // Estado para el modal de confirmación
   const [imageUri, setImageUri] = useState(null)
-  const defaultImage = 'https://cdn-icons-png.flaticon.com/512/149/149071.png'
+  const defaultImage = ' '
 
   useEffect(() => {
     if (user && user.photoURL) {

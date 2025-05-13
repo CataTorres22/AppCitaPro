@@ -10,14 +10,14 @@ import ModalImagePicker from '../components/ModalImagePicker';
 import { useNavigation } from '@react-navigation/native';
 import * as ImagePicker from 'expo-image-picker';
 
-const CLOUDINARY_URL = 'https://api.cloudinary.com/v1_1/dnjpuudn1/image/upload';
-const UPLOAD_PRESET = 'IMAGEDANIEL';
+const CLOUDINARY_URL = ' ';
+const UPLOAD_PRESET = ' ';
 
 const SettingsScreen = () => {
   const navigation = useNavigation();
   const { user, setUser } = useAuth();
   const [imageUri, setImageUri] = useState(null);
-  const defaultImage = 'https://cdn-icons-png.flaticon.com/512/149/149071.png';
+  const defaultImage = ' ';
   const [isEditModalVisible, setEditModalVisible] = useState(false);
   const [isImageModalVisible, setImageModalVisible] = useState(false);
   const [modalTitle, setModalTitle] = useState('');

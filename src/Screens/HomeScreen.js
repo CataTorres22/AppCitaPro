@@ -9,10 +9,10 @@ import { useAuth } from '../context/AuthContext'
 const HomeScreen = () => {
   const {user}= useAuth()
   return (
-    <LinearGradient colors={colors.gradienteSecundario} style={styles.container}>
+    <View>
       <Text style={styles.subtitle}>Hola {user?.displayName || 'Usuario'}</Text>
       <Text style={styles.text} >Home Screen</Text>
-    </LinearGradient>
+    </View>
   )
 }
 
